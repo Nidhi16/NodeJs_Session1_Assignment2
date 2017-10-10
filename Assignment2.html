@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- NodeJs_Session1_Assignment2. Write an anonymous functions which take email address as parameter and returns true/false
+     after validating the input parameter" -->
+<html>
+  <head>
+    <title>NodeJs Session1 Assignment2</title>
+  </head>
+  <body>
+    <form id="email-form">
+      <label for="email">Enter an email address</label><br>
+      <input type="text" name="email" id="email">
+      <button type="button" id="email-validate-btn" onclick="validate()">Validate</button>
+    </form>
+    <p id="validate-text"></p>
+  </body>
+  <!-- Internal JS -->
+  <script>
+    // An anonymous function which takes email as parameter and returns true/false after validating the email
+    var validateEmail = function(email) {
+      // Regular expression for email
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(email)) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    // An anonymous function which invokes the validateEmail function and pass value of email taken from input button
+    var validate = function() {
+      // Take value of input box 
+      var email = document.getElementById('email').value;
+      // Save return value of function validateEmail in result variable
+      var result = validateEmail(email);
+      if (result) {
+        console.log("True");
+        //The innerHTML property can be used to write the dynamic html on the html document
+        document.getElementById('validate-text').innerHTML = "This email id is valid";
+      } else {
+        console.log("False");
+        document.getElementById('validate-text').innerHTML = "This email id is not valid";
+      }
+    };
+  </script>
+</html>
