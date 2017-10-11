@@ -12,34 +12,35 @@
       <button type="button" id="email-validate-btn" onclick="validate()">Validate</button>
     </form>
     <p id="validate-text"></p>
-  </body>
-  <!-- Internal JS -->
-  <script>
-    // An anonymous function which takes email as parameter and returns true/false after validating the email
-    var validateEmail = function(email) {
-      // Regular expression for email
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (re.test(email)) {
-        return true;
-      } else {
-        return false;
-      }
-    };
+  
+    <!-- Internal JS -->
+    <script>
+      // An anonymous function which takes email as parameter and returns true/false after validating the email
+      var validateEmail = function(email) {
+        // Regular expression for email
+        var re = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+        return re.test(email);
+      };
 
-    // An anonymous function which invokes the validateEmail function and pass value of email taken from input button
-    var validate = function() {
-      // Take value of input box 
-      var email = document.getElementById('email').value;
-      // Save return value of function validateEmail in result variable
-      var result = validateEmail(email);
-      if (result) {
-        console.log("True");
-        //The innerHTML property can be used to write the dynamic html on the html document
-        document.getElementById('validate-text').innerHTML = "This email id is valid";
-      } else {
-        console.log("False");
-        document.getElementById('validate-text').innerHTML = "This email id is not valid";
-      }
-    };
-  </script>
+      // An anonymous function which invokes the validateEmail function and pass value of email taken from input button
+      var validate = function() {
+        // Take value of input box 
+        var email = document.getElementById('email').value;
+        if (email) {
+          // Saves returned value of function validateEmail in result variable
+          var result = validateEmail(email);
+          if (result) {
+            console.log("True");
+            //The innerText property can be used to write the dynamic text on the html document
+            document.getElementById('validate-text').innerText = "This email id is valid";
+          } else {
+            console.log("False");
+            document.getElementById('validate-text').innerText = "This email id is not valid";
+          }
+        } else {
+          alert("Please type an email address in the box");
+        }
+      };
+    </script>
+  </body>
 </html>
